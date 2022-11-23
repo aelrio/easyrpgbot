@@ -1,3 +1,13 @@
+# ------------------------------------------------------------------- #
+# oscoderBot - Bot de utilidades personales                           #
+#    Copyright (C) <2022>  <***REMOVED*** ***REMOVED***>  #
+# A LICENSE file should have been provided with this program.         #
+#                                                                     #
+# GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007                #
+# Source code provided without guarantee.                             #
+# ------------------------------------------------------------------- #
+
+
 # Importamos las librerías necesarias
 #from telegram.ext import Updater
 from telegram.ext import *
