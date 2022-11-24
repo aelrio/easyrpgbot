@@ -1,1 +1,1 @@
-cmd: python .\oscoderBot.py
+worker: python .\oscoderBot.py
