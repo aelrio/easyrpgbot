@@ -27,24 +27,12 @@ def main():
     updater = Updater(token=CONST_TOKEN, use_context=True)
 
     # Cogemos el Dispatcher, en el cual registraremos los comandos del bot y su funcionalidad
-    dispatcher = updater.dispatcher
-
-    # Registramos el método que hemos definido antes como listener para que muestre la información de cada mensaje
-    #listener_handler = MessageHandler(Filters.text, listener)
-   # dispatcher.add_handler(listener_handler)
-
     # Ahora registramos cada método a los comandos necesarios
-    
-    dispatcher.add_handler(CommandHandler("start", callback=start))
-    dispatcher.add_handler(CommandHandler("helloworld", callback=hola_mundo))
-    dispatcher.add_handler(CommandHandler("logo", callback=logo))
-    dispatcher.add_handler(CommandHandler("caps", callback=caps))
+    dispatcher = loadHandlers(updater)
 
-
+    #Handlers de Guarda
     dispatcher.add_handler(MessageHandler(Filters.text & (~Filters.command(False)), listener_mensajes)) #Textos y no comandos (excepto inline)
-    
     dispatcher.add_handler(MessageHandler(Filters.command(True), unknown)) # Debe ir detrás de los comandos definidos. (Comandos no reconocidos, incluso inline)
-    
     
     # Y comenzamos la ejecución del bot a las peticiones
     updater.start_polling()

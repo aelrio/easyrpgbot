@@ -1,6 +1,7 @@
+from telegram import Update
 from telegram.ext import (
-    Update,
-    CallbackContext)
+    CallbackContext
+    , CommandHandler)
 
 # Método que imprimirá por pantalla la información que reciba
 def listener_mensajes(update: Update, context: CallbackContext):
@@ -29,3 +30,17 @@ def caps(update: Update, context: CallbackContext):
 #Fallback -> si pasan comandos no conocidos
 def unknown(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=update.effective_chat.id, text="No he reconocido el comando.")
+
+def loadHandlers(updater):
+
+    dispatcher = updater.dispatcher
+
+    dispatcher.add_handler(CommandHandler("start", callback=start))
+    dispatcher.add_handler(CommandHandler("helloworld", callback=hola_mundo))
+    dispatcher.add_handler(CommandHandler("logo", callback=logo))
+    dispatcher.add_handler(CommandHandler("caps", callback=caps))
+
+
+
+    # Guardas se añaden fuera
+    return dispatcher
