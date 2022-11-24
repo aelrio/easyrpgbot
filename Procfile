@@ -1,1 +1,1 @@
-worker: python .\oscoderBot.py
+web: python .\oscoderBot.py
