@@ -10,7 +10,9 @@ Proyecto para practicar un poco de Python
 - <input type="checkbox" > Acceso a base de datos en python
 - <input type="checkbox" checked> Modularidad y arquitectura para un programita
   - He visitado este [blog](https://docs.python-guide.org/writing/structure/) y he empezado a crear una estructura
-
+- <input type="checkbox" checked> Despliegue en Heroku
+  - Procfile perfecto.
+- <input type="checkbox"> Despliegue en Render: [https://render.com](render.com)
 ## Estructura de proyecto - curiosidades para el novato de python
 
 - La forma de impportar en la carpeta `tests`.
