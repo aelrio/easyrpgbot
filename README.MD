@@ -22,3 +22,10 @@ Proyecto para practicar un poco de Python
 
 > To keep in line with the style guide, keep module names short, lowercase, and be sure to avoid using special symbols like the dot (.) or question mark (?). A file name like my.spam.py is the one you should avoid! Naming this way will interfere with the way Python looks for modules.
 
+start - comienzo de la funcionalidad
+about - mostrar informacion del bot
+help - mostrar ayuda sobre el bot
+profile - crea un perfil para personaje.
+health - mostrar la vida de los personajes
+herir - herir a un personaje, hiere a un personaje.
+curar - cura a un personaje la cantidad indicada.
