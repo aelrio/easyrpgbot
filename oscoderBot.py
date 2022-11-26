@@ -18,7 +18,7 @@ from comandos.comandos import *
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
 
-CONST_TOKEN = "***REMOVED***"
+CONST_TOKEN=""
 
 
 
