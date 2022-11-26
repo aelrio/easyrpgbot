@@ -1,6 +1,6 @@
 # ------------------------------------------------------------------- #
 # oscoderBot - Bot de utilidades personales                           #
-#    Copyright (C) <2022>  <***REMOVED*** ***REMOVED***>  #
+#    Copyright (C) <2022>  <oscoder>  #
 # A LICENSE file should have been provided with this program.         #
 #                                                                     #
 # GNU GENERAL PUBLIC LICENSE - Version 3, 29 June 2007                #
