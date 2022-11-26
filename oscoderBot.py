@@ -14,6 +14,7 @@ from telegram.ext import *
 from telegram import Update
 import logging
 from comandos.comandos import *
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
 
