@@ -10,20 +10,34 @@
 
 # Importamos las librerías necesarias
 # from telegram.ext import Updater
+import logging
+from pydoc import Helper
 from telegram.ext import *
 from telegram import Update
-import logging
 from comandos.comandos import *
+import parsers.healthParser as hparse
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
 
 CONST_TOKEN = "***REMOVED***"
+HEALTHLIST=None
+
+def globalValue(tag_string):
+    return HEALTHLIST
 
 
+def load():
+    # POR EJEMPLO EL PARSEADOR DEL ARCHIVO DE SALUD
+    print("LOAD HOLDER")
+    
+    
 
 def main():
     # Creamos el Updater, objeto que se encargará de mandarnos las peticiones del bot
     # Por supuesto no os olvidéis de cambiar donde pone "TOKEN" por el token que os ha dado BotFather
+    load()
+
     updater = Updater(token=CONST_TOKEN, use_context=True)
 
     # Cogemos el Dispatcher, en el cual registraremos los comandos del bot y su funcionalidad

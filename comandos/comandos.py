@@ -1,8 +1,10 @@
-from time import CLOCK_THREAD_CPUTIME_ID
+# from time import *
 from telegram import Update
 from telegram.ext import (
     CallbackContext
     , CommandHandler)
+from oscoderBot import (globalValue)
+from parsers.healthParser import *
 
 #
 # update.message.text mensaje que recibe el 
@@ -23,6 +25,10 @@ def start(update: Update, context: CallbackContext):
 def profileAdd(update: Update, context: CallbackContext):
     try:
         # Logica de creacion/guardado
+        # TODO AGNADIR A LOS ARCHIVOS
+ 
+        # TODO MERGEAR INFORMACION EN MEMORIA
+        # TODO CARGAR INFORMACION A LA MEMORIA
 
         # mensaje OK
         context.bot.sendMessage(chat_id=update.effective_chat.id, text="Personaje creado: " + context.args[0].upper())
@@ -31,17 +37,8 @@ def profileAdd(update: Update, context: CallbackContext):
         print(e)
         context.bot.sendMessage(chat_id=update.effective_chat.id, text="No se ha podido crear el personaje")
 
-# RPG - Método para agnadir un perfil
-def salud(update: Update, context: CallbackContext):
-    context.bot.sendMessage(chat_id=update.effective_chat.id, text='¡TEXTO DE SALUD!')
 
-# RPG - Método para restar salud a un perfil
-def herir(update: Update, context: CallbackContext):
-    context.bot.sendMessage(chat_id=update.effective_chat.id, text='¡TEXTO DE HERIR!')
 
-# RPG - Método para agnadir salud a un perfil
-def curar(update: Update, context: CallbackContext):
-    context.bot.sendMessage(chat_id=update.effective_chat.id, text='¡TEXTO DE CURAR!')
 # ---------------------------------------------------------
 # Método que mandará el mensaje "¡Hola, lector de Bytelix!"
 def about(update: Update, context: CallbackContext):
