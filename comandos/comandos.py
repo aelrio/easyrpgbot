@@ -17,7 +17,8 @@ from parsers.profileParser import *
 
 # Método que imprimirá por pantalla la información que reciba
 def listener_mensajes(update: Update, context: CallbackContext):
-    context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
+    pass
+    # context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
 
 # Método que utilizaremos para cuando se mande el comando de "start"
 def start(update: Update, context: CallbackContext):
