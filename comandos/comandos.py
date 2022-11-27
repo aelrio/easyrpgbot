@@ -4,7 +4,9 @@ from telegram.ext import (
     CallbackContext
     , CommandHandler)
 from oscoderBot import (globalValue)
+
 from parsers.healthParser import *
+from parsers.profileParser import *
 
 #
 # update.message.text mensaje que recibe el 
@@ -21,21 +23,7 @@ def listener_mensajes(update: Update, context: CallbackContext):
 def start(update: Update, context: CallbackContext):
     context.bot.sendMessage(chat_id=update.effective_chat.id, text='¡Bienvenido al bot personalizado de Oscoder!')
 
-# RPG - Método para agnadir un perfil
-def profileAdd(update: Update, context: CallbackContext):
-    try:
-        # Logica de creacion/guardado
-        # TODO AGNADIR A LOS ARCHIVOS
- 
-        # TODO MERGEAR INFORMACION EN MEMORIA
-        # TODO CARGAR INFORMACION A LA MEMORIA
 
-        # mensaje OK
-        context.bot.sendMessage(chat_id=update.effective_chat.id, text="Personaje creado: " + context.args[0].upper())
-    except Exception as e:
-      # mensaje noOK
-        print(e)
-        context.bot.sendMessage(chat_id=update.effective_chat.id, text="No se ha podido crear el personaje")
 
 
 
@@ -69,10 +57,13 @@ def loadHandlers(updater):
     dispatcher.add_handler(CommandHandler("about", callback=about))
     dispatcher.add_handler(CommandHandler("help", callback=help))
     # dispatcher.add_handler(CommandHandler("caps", callback=caps))
-    dispatcher.add_handler(CommandHandler("profile", callback=profileAdd))
+    dispatcher.add_handler(CommandHandler("perfiles", callback=perfiles))
+    dispatcher.add_handler(CommandHandler("nuevo", callback=profileAdd))
+
     dispatcher.add_handler(CommandHandler("salud", callback=salud))
     dispatcher.add_handler(CommandHandler("herir", callback=herir))
     dispatcher.add_handler(CommandHandler("curar", callback=curar))
+    
 
     # Guardas se añaden fuera
     return dispatcher

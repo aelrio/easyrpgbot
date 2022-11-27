@@ -1,5 +1,3 @@
-from mailbox import NoSuchMailboxError
-from posixpath import split
 from telegram import Update
 from telegram.ext import (
     CallbackContext
@@ -15,7 +13,7 @@ class HealthObject:
         self.health = int(LISTA[2])
 
     def __str__(self):
-        return ":".join([self.profile, str(self.maxhealth), str(self.health)])
+        return self.profile + ": " + str(self.health) + "/" + str(self.maxhealth)
 
     def __repr__(self):
         return self.profile
@@ -75,30 +73,40 @@ def persist():
 HEALTHLIST = load()
 
 def healthListMessage(LISTA):
-    return "|".join([str(i) for i in LISTA.values()])
+    return "\n".join([str(i) for i in LISTA])
 
-# RPG - Método para agnadir un perfil
+
+# RPG - Método para leer la salud de los perfiles
 def salud(update: Update, context: CallbackContext):
-    
-    context.bot.sendMessage(chat_id=update.effective_chat.id, text=healthListMessage(HEALTHLIST))
+    if len(context.args) > 20:
+        context.bot.sendMessage(chat_id=update.effective_chat.id, text="NO SOPORTADO 20+ ARGUMENTOS")
+    elif len(context.args) > 0:
+        context.bot.sendMessage(chat_id=update.effective_chat.id, text=healthListMessage([ HEALTHLIST[i] if i in HEALTHLIST.keys() else "*NO-ENCONTRADO*" for i in [x.upper() for x in context.args] ] ))
+    else: # LISTAR TODOS
+        context.bot.sendMessage(chat_id=update.effective_chat.id, text=healthListMessage(HEALTHLIST.values()))
 
-    # RPG - Método para restar salud a un perfil
+    
+
+# RPG - Método para restar salud a un perfil
 def herir(update: Update, context: CallbackContext):
     # TODO GESTION DEL ERROR SI PASAN ALGO DISTINTO A UN NUMERO?
-
-    HEALTHLIST[context.args[0].upper()].health -= int(context.args[1])
-    context.bot.sendMessage(chat_id=update.effective_chat.id
+    if len(context.args) < 2:
+        context.bot.sendMessage(chat_id=update.effective_chat.id, text="NO SOPORTADO SIN 2 ARGUMENTOS")
+    else:
+        HEALTHLIST[context.args[0].upper()].health -= int(context.args[1])
+        context.bot.sendMessage(chat_id=update.effective_chat.id
         , text=HEALTHLIST[context.args[0].upper()].profile+" recibe "+context.args[1]+" heridas.")
 
 # RPG - Método para agnadir salud a un perfil
 def curar(update: Update, context: CallbackContext):
     
-
-    HEALTHLIST[context.args[0].upper()].health += int(context.args[1])
-    context.bot.sendMessage(chat_id=HEALTHLIST[context.args[0].upper()].profile+" es curado "+context.args[1]+" puntos.")
+    if len(context.args) < 2:
+        context.bot.sendMessage(chat_id=update.effective_chat.id, text="NO SOPORTADO SIN 2 ARGUMENTOS")
+    else:
+        HEALTHLIST[context.args[0].upper()].health += int(context.args[1])
+        context.bot.sendMessage(chat_id=update.effective_chat.id, text=HEALTHLIST[context.args[0].upper()].profile+" es curado "+context.args[1]+" puntos.")
 
 def setMaxHealth(update: Update, context: CallbackContext):
 
     HEALTHLIST[context.args[0].upper()].maxhealth = int(context.args[1])
     context.bot.sendMessage(chat_id="La salud máxima de "+HEALTHLIST[context.args[0].upper()].profile+" es: "+HEALTHLIST[context.args[0].upper()].maxhealth)
-    
