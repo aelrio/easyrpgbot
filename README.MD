@@ -6,17 +6,31 @@ Proyecto para practicar un poco de Python
 
 ## Checklist
 
-- <input type="checkbox" > Acceso a ficheros en python
-- <input type="checkbox" > Acceso a base de datos en python
-- <input type="checkbox" checked> Modularidad y arquitectura para un programita
-  - He visitado este [blog](https://docs.python-guide.org/writing/structure/) y he empezado a crear una estructura
-- <input type="checkbox" checked> Despliegue en Heroku
-  - Procfile perfecto.
-- <input type="checkbox"> Despliegue en Render: [https://render.com](render.com)
+- Programacion
+  - <input type="checkbox" checked> Acceso a ficheros en python
+  - <input type="checkbox" > Acceso a base de datos en python
+  - <input type="checkbox" checked> Modularidad y arquitectura para un programita
+    - He visitado este [blog](https://docs.python-guide.org/writing/structure/) y he empezado a crear una estructura
+  - <input type="checkbox"> `/data` que organiza información referente a un mismo chat en el que se encuentre el bot.
+- Operacion
+  - Procfile perfecto para depliegue en Heroku.
+    - Ya no es gratuito. 
+  - <input type="checkbox" checked> Despliegue en Google Cloud.
+- <input type="checkbox">
+- <input type="checkbox">
+- <input type="checkbox">
+- <input type="checkbox">
+- <input type="checkbox">
+
 ## Estructura de proyecto - curiosidades para el novato de python
 
 - La forma de impportar en la carpeta `tests`.
-- Archivo `Makefile` que utiliza requiremets para hacer instalacion con `pip`.  
+- Archivo `Makefile` que utiliza requiremets para hacer instalacion con `pip`. En realidad he realizado la ejecución de ese comando a mano:
+
+~~~
+pip3 install -r requirements.txt
+~~~
+
 
 --- 
 
