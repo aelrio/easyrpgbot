@@ -20,7 +20,7 @@ import parsers.healthParser as hparse
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
 
-CONST_TOKEN = "***REMOVED***"
+CONST_TOKEN = "REMOVED"
 HEALTHLIST=None
 
 def globalValue(tag_string):
