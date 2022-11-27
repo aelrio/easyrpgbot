@@ -3,7 +3,7 @@ from telegram.ext import (
     CallbackContext
     , CommandHandler)
 
-PATH="data\health.txt"
+PATH="data/health.txt"
 
 class HealthObject:
 
