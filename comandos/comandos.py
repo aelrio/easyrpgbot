@@ -7,7 +7,7 @@ from oscoderBot import (globalValue)
 
 from parsers.healthParser import *
 from parsers.profileParser import *
-
+import time, os
 #
 # update.message.text mensaje que recibe el 
 #
@@ -24,6 +24,18 @@ def listener_mensajes(update: Update, context: CallbackContext):
 def start(update: Update, context: CallbackContext):
     context.bot.sendMessage(chat_id=update.effective_chat.id, text='¡Bienvenido al bot personalizado de Oscoder!')
 
+    # Creacion de una carpeta.
+    CHECKPATH="data/"+str(update.effective_chat.id)
+    if (not os.path.exists(CHECKPATH)):
+        os.makedirs(CHECKPATH)
+        touch(CHECKPATH+"/profiles.txt")
+        touch(CHECKPATH+"/health.txt")
+        #archivo = open(CHECKPATH+"/profiles.txt",'x')
+        #archivo.close()
+        time.sleep(3)
+        context.bot.sendMessage(chat_id=update.effective_chat.id, text='He creado un espacio de trabajo para este canal.')
+    
+    
 
 
 
@@ -68,3 +80,8 @@ def loadHandlers(updater):
 
     # Guardas se añaden fuera
     return dispatcher
+
+def touch(rutaArchivo):
+    with open(rutaArchivo, 'a'):
+        os.utime(rutaArchivo, None)
+        print("Creado: {}".format(rutaArchivo))
