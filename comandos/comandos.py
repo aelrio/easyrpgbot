@@ -34,7 +34,8 @@ def start(update: Update, context: CallbackContext):
         #archivo.close()
         time.sleep(3)
         context.bot.sendMessage(chat_id=update.effective_chat.id, text='He creado un espacio de trabajo para este canal.')
-    
+    else:
+        context.bot.sendMessage(chat_id=update.effective_chat.id, text='El espacio de trabajo para el canal ya existe.')
     
 
 
