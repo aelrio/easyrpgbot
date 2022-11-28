@@ -10,7 +10,7 @@
 
 # Importamos las librerías necesarias
 # from telegram.ext import Updater
-import logging
+import logging, sys
 from pydoc import Helper
 from telegram.ext import *
 from telegram import Update
@@ -34,6 +34,9 @@ def load():
     
 
 def main():
+    global CONST_TOKEN
+    CONST_TOKEN=sys.argv[1]
+    
     # Creamos el Updater, objeto que se encargará de mandarnos las peticiones del bot
     # Por supuesto no os olvidéis de cambiar donde pone "TOKEN" por el token que os ha dado BotFather
     load()
