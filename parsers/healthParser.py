@@ -2,6 +2,7 @@ from telegram import Update
 from telegram.ext import (
     CallbackContext
     , CommandHandler)
+from ..util import *
 
 PATH="data/health.txt"
 
@@ -90,23 +91,34 @@ def salud(update: Update, context: CallbackContext):
 # RPG - Método para restar salud a un perfil
 def herir(update: Update, context: CallbackContext):
     # TODO GESTION DEL ERROR SI PASAN ALGO DISTINTO A UN NUMERO?
+    valor = gestionarEntrada(context.args[1])
+
     if len(context.args) < 2:
         context.bot.sendMessage(chat_id=update.effective_chat.id, text="NO SOPORTADO SIN 2 ARGUMENTOS")
     else:
-        HEALTHLIST[context.args[0].upper()].health -= int(context.args[1])
+        HEALTHLIST[context.args[0].upper()].health -= int(valor)
         context.bot.sendMessage(chat_id=update.effective_chat.id
-        , text=HEALTHLIST[context.args[0].upper()].profile+" recibe "+context.args[1]+" heridas.")
+        , text=HEALTHLIST[context.args[0].upper()].profile+" recibe "+valor+" heridas.")
 
 # RPG - Método para agnadir salud a un perfil
 def curar(update: Update, context: CallbackContext):
-    
+
     if len(context.args) < 2:
         context.bot.sendMessage(chat_id=update.effective_chat.id, text="NO SOPORTADO SIN 2 ARGUMENTOS")
     else:
-        HEALTHLIST[context.args[0].upper()].health += int(context.args[1])
-        context.bot.sendMessage(chat_id=update.effective_chat.id, text=HEALTHLIST[context.args[0].upper()].profile+" es curado "+context.args[1]+" puntos.")
+        valor = gestionarEntrada(context.args[1])
+
+        HEALTHLIST[context.args[0].upper()].health += int(valor)
+        context.bot.sendMessage(chat_id=update.effective_chat.id, text=HEALTHLIST[context.args[0].upper()].profile+" es curado "+valor+" puntos.")
 
 def setMaxHealth(update: Update, context: CallbackContext):
 
     HEALTHLIST[context.args[0].upper()].maxhealth = int(context.args[1])
     context.bot.sendMessage(chat_id="La salud máxima de "+HEALTHLIST[context.args[0].upper()].profile+" es: "+HEALTHLIST[context.args[0].upper()].maxhealth)
+
+# --------------------------------
+def gestionarEntrada(texto):
+    if (isDiceText(texto)):
+        res = solveDice(texto)
+    else:
+        res = texto
