@@ -3,7 +3,7 @@ from telegram.ext import (
     CallbackContext
     , CommandHandler)
 
-PATH="data/profiles.txt"
+
 # RPG - Método para agnadir un perfil
 def profileAdd(update: Update, context: CallbackContext):
     try:
@@ -22,15 +22,18 @@ def profileAdd(update: Update, context: CallbackContext):
 
 # RPG - Método para devolver los perfiles anotados
 def perfiles(update: Update, context: CallbackContext):
-    context.bot.sendMessage(chat_id=update.effective_chat.id, text="Personajes:\n" + readPerfiles())
+    context.bot.sendMessage(chat_id=update.effective_chat.id, text="Personajes:\n" + readPerfiles(update.effective_chat.id))
 
 
 
-def readPerfiles():
-    with open(PATH, 'r') as archivo:
+def readPerfiles(chatId):
+    with open(profilesPath(chatId), 'r') as archivo:
         lineas = archivo.readlines()
     
     if len(lineas) > 0:
         return "".join(lineas).upper()
     else:
         return "No hay personajes declarados"
+
+def profilesPath(chatId):
+    PATH="data/"+str(chatId) +"profiles.txt"
