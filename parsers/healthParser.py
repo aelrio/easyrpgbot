@@ -2,7 +2,7 @@ from telegram import Update
 from telegram.ext import (
     CallbackContext
     , CommandHandler)
-from ..util import *
+from util import *
 
 PATH="data/health.txt"
 

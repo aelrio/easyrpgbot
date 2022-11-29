@@ -1,2 +1,3 @@
 # pip requirements deberian estar aquí en el root del proyecto
 python-telegram-bot
+pyparsing
