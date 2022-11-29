@@ -18,7 +18,7 @@ Proyecto para practicar un poco de Python
   - <input type="checkbox" checked>Despliegue en Google Cloud.
 - <input type="checkbox" checked>Librería de dados.
 - <input type="checkbox">Funcionalidad de dados
-- <input type="checkbox">
+- <input type="checkbox">¡! Gestionar los juegos en memoria. Un diccionario con el numero
 - <input type="checkbox">
 - <input type="checkbox">
 
