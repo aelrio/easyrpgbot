@@ -15,9 +15,9 @@ Proyecto para practicar un poco de Python
 - Operacion
   - Procfile perfecto para depliegue en Heroku.
     - Ya no es gratuito. 
-  - <input type="checkbox" checked> Despliegue en Google Cloud.
-- <input type="checkbox">
-- <input type="checkbox">
+  - <input type="checkbox" checked>Despliegue en Google Cloud.
+- <input type="checkbox" checked>Librería de dados.
+- <input type="checkbox">Funcionalidad de dados
 - <input type="checkbox">
 - <input type="checkbox">
 - <input type="checkbox">
@@ -43,3 +43,9 @@ profile - crea un perfil para personaje.
 health - mostrar la vida de los personajes
 herir - herir a un personaje, hiere a un personaje.
 curar - cura a un personaje la cantidad indicada.
+
+## LICENSING
+
+De code on this project is bound to the LICENSE text provided.
+
+The `dice` module that is included comes from  [borntyping python-dice repository](https://github.com/borntyping/python-dice/) comes from code is bound to the MIT license wich is provided inside it's folder (`dice/LICENSE` file).
