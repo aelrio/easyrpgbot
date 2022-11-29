@@ -36,4 +36,4 @@ def readPerfiles(chatId):
         return "No hay personajes declarados"
 
 def profilesPath(chatId):
-    return "data/"+ str(chatId) +"profiles.txt"
+    return "data/"+ str(chatId) +"/profiles.txt"
