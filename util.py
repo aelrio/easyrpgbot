@@ -9,7 +9,7 @@ def solveDice(dicetext):
 
 
 def isDiceText(dicetext):
-    return False
+    return str(dicetext).find("d") > -1
 
 
 class RpgCache:
