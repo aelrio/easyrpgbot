@@ -2,7 +2,7 @@ from telegram import Update
 from telegram.ext import (
     CallbackContext
     , CommandHandler)
-from healthParser import healthPath
+from .healthParser import healthPath
 
 # RPG - Método para agnadir un perfil
 def profileAdd(update: Update, context: CallbackContext):
@@ -61,5 +61,5 @@ def inicializarDatos(nombre, chat):
                 archivo.write("\n")
 
     with(open(healthPath(chat),'a')) as archivo:
-        archivo.write(nombre + ":0:0")
+        archivo.write("\n"+nombre + ":0:0")
 

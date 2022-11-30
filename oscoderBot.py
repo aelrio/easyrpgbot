@@ -17,29 +17,31 @@ from telegram import Update
 from comandos.comandos import *
 import parsers.healthParser as hparse
 
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
 
 CONST_TOKEN = "REMOVED"
-HEALTHLIST=None
+
+
+
 
 def globalValue(tag_string):
-    return HEALTHLIST
+    return ""
 
 
-def load():
-    # POR EJEMPLO EL PARSEADOR DEL ARCHIVO DE SALUD
-    print("LOAD HOLDER")
     
     
 
 def main():
+    
+
     global CONST_TOKEN
     CONST_TOKEN=sys.argv[1]
     
     # Creamos el Updater, objeto que se encargará de mandarnos las peticiones del bot
     # Por supuesto no os olvidéis de cambiar donde pone "TOKEN" por el token que os ha dado BotFather
-    load()
+    
 
     updater = Updater(token=CONST_TOKEN, use_context=True)
 

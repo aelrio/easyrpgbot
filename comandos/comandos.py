@@ -4,7 +4,7 @@ from telegram.ext import (
     CallbackContext
     , CommandHandler)
 from oscoderBot import (globalValue)
-
+from persistence.cacheHolder import *
 from parsers.healthParser import *
 from parsers.profileParser import *
 import time, os
@@ -23,7 +23,7 @@ def listener_mensajes(update: Update, context: CallbackContext):
 # Método que utilizaremos para cuando se mande el comando de "start"
 def start(update: Update, context: CallbackContext):
     context.bot.sendMessage(chat_id=update.effective_chat.id, text='¡Bienvenido al bot personalizado de Oscoder!')
-
+    
     # Creacion de una carpeta.
     CHECKPATH="data/"+str(update.effective_chat.id)
     if (not os.path.exists(CHECKPATH)):
@@ -34,10 +34,14 @@ def start(update: Update, context: CallbackContext):
         #archivo.close()
         time.sleep(3)
         context.bot.sendMessage(chat_id=update.effective_chat.id, text='He creado un espacio de trabajo para este canal.')
+
+        
+
     else:
         context.bot.sendMessage(chat_id=update.effective_chat.id, text='El espacio de trabajo para el canal ya existe.')
     
-
+    
+    loadHealth(update.effective_chat.id)
 
 
 
