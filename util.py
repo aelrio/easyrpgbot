@@ -2,7 +2,7 @@ import dice
 
 def solveDice(dicetext):
     try:
-        res = dice.roll(dicetext)
+        res = sum(dice.roll(dicetext))
         return str(res)
     except dice.DiceBaseException as e:
         print(e.pretty_print())
