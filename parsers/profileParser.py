@@ -3,6 +3,9 @@ from telegram.ext import (
     CallbackContext
     , CommandHandler)
 from .healthParser import healthPath
+from persistence.cacheHolder import getCache
+
+CACHE=getCache()
 
 # RPG - Método para agnadir un perfil
 def profileAdd(update: Update, context: CallbackContext):
@@ -11,6 +14,8 @@ def profileAdd(update: Update, context: CallbackContext):
         # AGNADIR A LOS ARCHIVOS
         indiceEncontrado = -1
         try:
+            hl = CACHE[pdate.effective_chat.id]
+            # TODO Guardado en cache
             with(open(profilesPath(update.effective_chat.id),'r')) as archivo:
                 lineas = archivo.readlines()
                 indiceEncontrado = lineas.index(context.args[0].upper())

@@ -43,6 +43,7 @@ profile - crea un perfil para personaje.
 health - mostrar la vida de los personajes
 herir - herir a un personaje, hiere a un personaje.
 curar - cura a un personaje la cantidad indicada.
+save - persistir los datos
 
 ## LICENSING
 

@@ -22,6 +22,7 @@ class HealthObject:
         return self.profile
     
     
+    
 
 def loadHealth(chatId):
     global CACHE
@@ -86,15 +87,18 @@ def healthListMessage(LISTA):
 # RPG - Método para leer la salud de los perfiles
 def salud(update: Update, context: CallbackContext):
     global CACHE
-    hl = CACHE[update.effective_chat.id].healthList
-    
-    if len(context.args) > 20:
-        context.bot.sendMessage(chat_id=update.effective_chat.id, text="NO SOPORTADO 20+ ARGUMENTOS")
-    elif len(context.args) > 0:
-        context.bot.sendMessage(chat_id=update.effective_chat.id, text=healthListMessage([ hl[i] if i in hl.keys() else "*NO-ENCONTRADO*" for i in [x.upper() for x in context.args] ] ))
-    else: # LISTAR TODOS
-        context.bot.sendMessage(chat_id=update.effective_chat.id, text=healthListMessage(hl.values()))
-
+    try:
+        hl = CACHE[update.effective_chat.id].healthList
+        
+        if len(context.args) > 20:
+            context.bot.sendMessage(chat_id=update.effective_chat.id, text="NO SOPORTADO 20+ ARGUMENTOS")
+        elif len(context.args) > 0:
+            context.bot.sendMessage(chat_id=update.effective_chat.id, text=healthListMessage([ hl[i] if i in hl.keys() else "*NO-ENCONTRADO*" for i in [x.upper() for x in context.args] ] ))
+        else: # LISTAR TODOS
+            context.bot.sendMessage(chat_id=update.effective_chat.id, text=healthListMessage(hl.values()))
+    except Exception as e:
+        print(e)
+        context.bot.sendMessage(chat_id=update.effective_chat.id, text="Información de salud no cargada. Ejecuta el comando /start")
     
 
 # RPG - Método para restar salud a un perfil
@@ -102,31 +106,48 @@ def herir(update: Update, context: CallbackContext):
     global CACHE
     hl = CACHE[update.effective_chat.id].healthList
 
-    # TODO GESTION DEL ERROR SI PASAN ALGO DISTINTO A UN NUMERO?
-    valor = gestionarEntrada(context.args[1])
+    
+    if len(context.args) == 1 : 
+        valor = gestionarEntrada(context.args[0])
+        for (prof) in hl.values():
+            prof.health -= int(valor)
+            context.bot.sendMessage(chat_id=update.effective_chat.id
+            , text=prof.profile+" recibe "+valor+" heridas.")
+            if (prof.health <= 0):
+                context.bot.sendMessage(chat_id=update.effective_chat.id
+                , text=prof.profile + " no tiene buen aspecto.")
+    elif len(context.args) > 1 :
+        valor = gestionarEntrada(context.args[-1])
+        for prof in context.args[:-1] :
+            hl[prof.upper()].health -= int(valor)
+            context.bot.sendMessage(chat_id=update.effective_chat.id
+            , text=prof.upper()+" recibe "+valor+" heridas.")
+            if (hl[prof.upper()].health <= 0):
+                context.bot.sendMessage(chat_id=update.effective_chat.id
+                , text=prof.upper() + " no tiene buen aspecto.")
 
-    if len(context.args) < 2:
-        context.bot.sendMessage(chat_id=update.effective_chat.id, text="NO SOPORTADO SIN 2 ARGUMENTOS")
-    else:
-        hl[context.args[0].upper()].health -= int(valor)
-        context.bot.sendMessage(chat_id=update.effective_chat.id
-        , text=hl[context.args[0].upper()].profile+" recibe "+valor+" heridas.")
-    if (hl[context.args[0].upper()].health <= 0):
-        context.bot.sendMessage(chat_id=update.effective_chat.id
-        , text=hl[context.args[0].upper()].profile + " no tiene buen aspecto.")
 
 # RPG - Método para agnadir salud a un perfil
 def curar(update: Update, context: CallbackContext):
     global CACHE
     hl = CACHE[update.effective_chat.id].healthList
 
-    if len(context.args) < 2:
-        context.bot.sendMessage(chat_id=update.effective_chat.id, text="NO SOPORTADO SIN 2 ARGUMENTOS")
-    else:
-        valor = gestionarEntrada(context.args[1])
+    if len(context.args) == 1 : 
+        valor = gestionarEntrada(context.args[0])
+        for (prof) in hl.values():
+            prof.health += int(valor)
+            context.bot.sendMessage(chat_id=update.effective_chat.id, text=prof.profile+" es curado en "+valor+" heridas.")
+            if (prof.health == 0):
+                context.bot.sendMessage(chat_id=update.effective_chat.id
+                , text=prof.profile + " vuelve a respirar, aunque débilmente.")
+    elif len(context.args) > 1 :
+        valor = gestionarEntrada(context.args[-1])
+        for prof in context.args[:-1] :
+            hl[prof.upper()].health += int(valor)
+            context.bot.sendMessage(chat_id=update.effective_chat.id, text=prof.upper()+" es curado en "+valor+" heridas.")
+            if (hl[prof.upper()].health == 0):
+                context.bot.sendMessage(chat_id=update.effective_chat.id, text=prof.upper() + " vuelve a respirar, aunque débilmente.")
 
-        hl[context.args[0].upper()].health += int(valor)
-        context.bot.sendMessage(chat_id=update.effective_chat.id, text=hl[context.args[0].upper()].profile+" es curado "+valor+" puntos.")
 
 def setMaxHealth(update: Update, context: CallbackContext):
     global CACHE

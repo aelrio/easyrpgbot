@@ -77,6 +77,7 @@ def loadHandlers(updater):
     # dispatcher.add_handler(CommandHandler("caps", callback=caps))
     dispatcher.add_handler(CommandHandler("perfiles", callback=perfiles))
     dispatcher.add_handler(CommandHandler("nuevo", callback=profileAdd))
+    dispatcher.add_handler(CommandHandler("save", callback=saveCache))
 
     dispatcher.add_handler(CommandHandler("salud", callback=salud))
     dispatcher.add_handler(CommandHandler("herir", callback=herir))
