@@ -16,12 +16,14 @@ class HealthObject:
         self.health = int(LISTA[2])
 
     def __str__(self):
-        return self.profile + ": " + str(self.health) + "/" + str(self.maxhealth)
+        return self.profile + ":" + str(self.health) + "/" + str(self.maxhealth)
 
     def __repr__(self):
         return self.profile
     
-    
+    def savestring(self):
+        L = [self.profile, self.maxhealth, self.health]
+        return ":".join([str(it) for it in L])
     
 
 def loadHealth(chatId):

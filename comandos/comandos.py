@@ -82,6 +82,7 @@ def loadHandlers(updater):
     dispatcher.add_handler(CommandHandler("salud", callback=salud))
     dispatcher.add_handler(CommandHandler("herir", callback=herir))
     dispatcher.add_handler(CommandHandler("curar", callback=curar))
+    dispatcher.add_handler(CommandHandler("maxh", callback=setMaxHealth))
     
 
     # Guardas se añaden fuera

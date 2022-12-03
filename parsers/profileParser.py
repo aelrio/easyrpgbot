@@ -2,7 +2,7 @@ from telegram import Update
 from telegram.ext import (
     CallbackContext
     , CommandHandler)
-from .healthParser import healthPath
+from .healthParser import HealthObject, healthPath
 from persistence.cacheHolder import getCache
 
 CACHE=getCache()
@@ -13,21 +13,20 @@ def profileAdd(update: Update, context: CallbackContext):
         # Logica de creacion/guardado
         # AGNADIR A LOS ARCHIVOS
         indiceEncontrado = -1
-        try:
-            hl = CACHE[pdate.effective_chat.id]
-            # TODO Guardado en cache
-            with(open(profilesPath(update.effective_chat.id),'r')) as archivo:
-                lineas = archivo.readlines()
-                indiceEncontrado = lineas.index(context.args[0].upper())
+        #try:
+        hl = CACHE[update.effective_chat.id]
+        # TODO Guardado en cache
+        if context.args[0].upper() not in hl.healthList.keys():
+            hl.healthList[context.args[0].upper()] = HealthObject([context.args[0].upper(), 0, 0])
+        else:
+            context.bot.sendMessage(chat_id=update.effective_chat.id, text="El personaje ya está en la lista")
             
-        except ValueError as ve:
+        #except ValueError as ve:
             # ValueError -> no está en la lista lo creamos
-            inicializarDatos(context.args[0].upper(), update.effective_chat.id)
+         #   inicializarDatos(context.args[0].upper(), update.effective_chat.id)
             
 
-        if (indiceEncontrado != -1):
-            context.bot.sendMessage(chat_id=update.effective_chat.id, text="El personaje ya está en la lista")
-            raise Exception
+        
 
         # TODO MERGEAR INFORMACION EN MEMORIA
         # TODO CARGAR INFORMACION A LA MEMORIA
