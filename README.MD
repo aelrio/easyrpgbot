@@ -39,11 +39,12 @@ pip3 install -r requirements.txt
 start - comienzo de la funcionalidad
 about - mostrar informacion del bot
 help - mostrar ayuda sobre el bot
-profile - crea un perfil para personaje.
-health - mostrar la vida de los personajes
-herir - herir a un personaje, hiere a un personaje.
-curar - cura a un personaje la cantidad indicada.
+perfiles - muestra los nombres de los personajes
+nuevo - crea un perfil para personaje.
 save - persistir los datos
+salud - mostrar la vida de los personajes. Todos o 1 personaje
+herir - herir a un personaje la cantidad indicada: nombre/s o sin nombre para todos. Admite ejecución de dados
+curar - cura a un personaje la cantidad indicada: nombre/s o sin nombre para todos. Admite ejecucion de dados
 
 ## LICENSING
 
