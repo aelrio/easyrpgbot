@@ -156,7 +156,7 @@ def setMaxHealth(update: Update, context: CallbackContext):
     hl = CACHE[update.effective_chat.id].healthList
 
     hl[context.args[0].upper()].maxhealth = int(context.args[1])
-    context.bot.sendMessage(chat_id="La salud máxima de "+hl[context.args[0].upper()].profile+" es: "+hl[context.args[0].upper()].maxhealth)
+    context.bot.sendMessage(chat_id="La salud máxima de " + hl[context.args[0].upper()].profile + " es: " + str(hl[context.args[0].upper()].maxhealth))
 
 # --------------------------------
 def gestionarEntrada(texto):
